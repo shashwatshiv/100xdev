@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap"
+      rel="stylesheet" />
+    <title>Zerodha - Online trading at lowest price</title>
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="logo">
+        <img
+          src="https://zerodha.com/static/images/logo.svg"
+          alt="logo"
+          height="20px"
+          srcset="" />
+      </div>
+      <div class="navitems">
+        <ul>
+          <li>Signup</li>
+          <li>About</li>
+          <li>Products</li>
+          <li>Support</li>
+          <li><img src="menu.png" alt="menu" srcset="" height="25px" /></li>
+        </ul>
+      </div>
+    </div>
+    <div class="hero">
+      <img
+        src="https://zerodha.com/static/images/landing.png"
+        width="70%"
+        alt=""
+        srcset="" />
+    </div>
+    <div class="hero-text">
+      <h2>Invest in Everything</h2>
+      <p>
+        Online platform to invest in stocks, derivatives, mutual funds, and more
+      </p>
+      <button>Sign up Now</button>
+    </div>
+    <div class="calculator">
+      <h2>Return Calculator</h2>
+      <div>
+        <form onsubmit="returnCalculator()">
+          <label for="capital">Capital</label>
+          <input id="capital" type="number" />
+          <label for="year">Year</label>
+          <input id="year" type="number" />
+          <label for="interest">Interest</label>
+          <input id="interest" type="number" />
+          <input type="submit" value="Submit" />
+          <button onclick="returnCalculator()">Submit</button>
+          <input type="reset" />
+        </form>
+
+        <div id="result"></div>
+      </div>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>
