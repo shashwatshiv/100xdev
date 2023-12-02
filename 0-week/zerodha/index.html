@@ -48,19 +48,21 @@
     <div class="calculator">
       <h2>Return Calculator</h2>
       <div>
-        <form onsubmit="returnCalculator()">
-          <label for="capital">Capital</label>
-          <input id="capital" type="number" />
-          <label for="year">Year</label>
-          <input id="year" type="number" />
-          <label for="interest">Interest</label>
-          <input id="interest" type="number" />
-          <input type="submit" value="Submit" />
-          <button onclick="returnCalculator()">Submit</button>
-          <input type="reset" />
-        </form>
+        <div class="form">
+          <input id="capital" type="number" placeholder="Capital" />
+        </div>
+        <div class="form">
+          <input id="year" type="number" placeholder="Year" />
+        </div>
 
-        <div id="result"></div>
+        <div class="form">
+          <input id="interest" type="number" placeholder="Interest Rate" />
+        </div>
+
+        <button onclick="returnCalculator()">Submit</button>
+        <button onclick="reset()">Reset</button>
+
+        <div id="result" aria-placeholder="">Result</div>
       </div>
     </div>
 

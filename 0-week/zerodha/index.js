@@ -1,5 +1,5 @@
 function returnCalculator() {
-  return false;
+  event.preventDefault();
   console.log("returnCalculator");
   let capital = document.getElementById("capital").value;
   let year = document.getElementById("year").value;

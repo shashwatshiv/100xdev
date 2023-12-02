@@ -29,7 +29,7 @@ body {
 }
 .hero {
   display: flex;
-
+  margin-top: 10px;
   justify-content: center;
 }
 .hero-text {
@@ -67,15 +67,17 @@ button:hover {
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  margin: 100px auto;
 }
-label {
-  font-size: 20px;
-  color: #424242;
-}
-input {
+input,
+#result {
   border: solid 3px #387ed1;
   padding: 10px 30px;
   border-radius: 10px;
   font-size: 20px;
   color: #424242;
+}
+
+.form {
+  margin: 20px 0px;
 }
