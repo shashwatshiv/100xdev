@@ -7,7 +7,18 @@ Try running it for
 Hint - use Date class exposed in JS
 There is no automated test for this one, this is more for you to understand time goes up as computation goes up
 */
-
+let date = new Date();
 function calculateTime(n) {
-    return 0.01;
+  let timestamp1 = Date.now();
+  console.log(timestamp1);
+  sum = 0;
+  for (let i = 0; i < 100000000; i++) {
+    sum += i;
+  }
+  let timestamp2 = Date.now();
+  console.log(timestamp2);
+  let time = timestamp2 - timestamp1;
+  return time;
 }
+yo = calculateTime();
+console.log(yo);
