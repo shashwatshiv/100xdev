@@ -13,10 +13,13 @@ function isAnagram(str1, str2) {
   let arr2 = str2.split("");
   arr1.sort();
   arr2.sort();
+
   console.log(JSON.stringify(arr1));
   if (JSON.stringify(arr1) === JSON.stringify(arr2)) {
     return true;
   } else return false;
 }
+// another method is to join the array and create a string after sorting it
+// arr1.join("");
 let to = isAnagram("sdfasdjf adsfs", "sdfsd");
 module.exports = isAnagram;
