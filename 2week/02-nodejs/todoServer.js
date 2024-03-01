@@ -39,11 +39,67 @@
 
   Testing the server - run `npm run test-todoServer` command in terminal
  */
-  const express = require('express');
-  const bodyParser = require('body-parser');
-  
-  const app = express();
-  
-  app.use(bodyParser.json());
-  
-  module.exports = app;
+const express = require("express");
+const bodyParser = require("body-parser");
+const app = express();
+app.use(bodyParser.json());
+
+let todoArray = [];
+//GET ALL
+app.get("/todos", (req, res) => {
+  res.json(todoArray);
+});
+// GET BY ID
+app.get("/todos/:id", (req, res) => {
+  let urlId = req.url.split("/")[2];
+  let noteFound = false;
+  todoArray.forEach((element) => {
+    if (urlId == element.id) {
+      res.send(element);
+      noteFound = true;
+    }
+  });
+  if (noteFound == false) res.sendStatus(404);
+});
+//POST
+app.post("/todos", (req, res) => {
+  let newTodo = req.body;
+  let id = Math.floor(Math.random() * 100);
+  Object.assign(newTodo, { id: id });
+  todoArray.push(newTodo);
+  res.status(201).json({ id: id });
+});
+// PUT
+app.put("/todos/:id", (req, res) => {
+  let urlId = req.url.split("/")[2];
+  let updatedTodo = {};
+  let update = false;
+  updatedTodo = req.body;
+  todoArray.forEach((element, index) => {
+    if (urlId == element.id) {
+      element.title = updatedTodo.title;
+      element.description = updatedTodo.description;
+      update = true;
+      res.sendStatus(200);
+    }
+  });
+  if (update == false) {
+    res.sendStatus(404);
+  }
+});
+// DELETE
+app.delete("/todos/:id", (req, res) => {
+  let urlId = req.url.split("/")[2];
+  let deleted = false;
+  todoArray.forEach((element, index) => {
+    if (urlId == element.id) {
+      todoArray.splice(index, 1);
+      res.sendStatus(200);
+      deleted = true;
+    }
+  });
+  if (deleted == false) {
+    res.sendStatus(404);
+  }
+});
+module.exports = app;
