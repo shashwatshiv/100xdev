@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="task" />
+    <br /><br />
+    <input type="text" id="description" />
+    <br /><br />
+    <button class="todo" onclick="Add()">Add Todo</button>
+    <div id="newtodo"></div>
+  </body>
+  <script>
+    function Add() {
+      const task = document.getElementById("task").value;
+      const description = document.getElementById("description").value;
+      const todo = document.getElementById("newtodo").innerHTML;
+      document.getElementById("newtodo").innerHTML =
+        todo +
+        `<div>
+        <div>${task}</div>
+        <div>${description}</div>
+        <div><button>Mark as complete</button></div>
+    </div>`;
+    }
+  </script>
+</html>
