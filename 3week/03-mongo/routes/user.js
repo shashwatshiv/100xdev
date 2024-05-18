@@ -22,6 +22,7 @@ router.post("/courses/:courseId", userMiddleware, (req, res) => {
   // Implement course purchase logic
   let courseID = req.params.courseId;
   let username = req.headers.username;
+
   User.updateOne(
     { username: username },
     { $push: { coursesPurchased: courseID } }

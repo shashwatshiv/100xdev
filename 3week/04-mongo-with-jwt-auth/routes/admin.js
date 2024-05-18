@@ -34,11 +34,20 @@ router.post("/signin", async (req, res) => {
 });
 
 router.post("/courses", adminMiddleware, (req, res) => {
-  res.send("hello");
+  Course.create({
+    title: req.body.title,
+    description: req.body.description,
+    price: req.body.price,
+    imageLink: req.body.imageLink,
+  }).then(() => {
+    res.json({ messesge: "course created successfully" });
+  });
 });
 
-router.get("/courses", adminMiddleware, (req, res) => {
+router.get("/courses", adminMiddleware, async (req, res) => {
   // Implement fetching all courses logic
+  let allCourses = await Course.find();
+  res.json({ courses: allCourses });
 });
 
 module.exports = router;
