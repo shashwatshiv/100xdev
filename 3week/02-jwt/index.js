@@ -20,7 +20,6 @@ const User = z.object({
 
 function signJwt(username, password) {
   let allow = User.safeParse({ username, password });
-  console.log(allow);
   let token = "";
   if (allow.success) {
     token = jwt.sign({ username }, jwtPassword);
