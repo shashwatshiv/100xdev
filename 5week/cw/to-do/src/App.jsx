@@ -1,26 +1,25 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 
 function App() {
   const [todos, setTodo] = useState([
     {
-      title: "complete react video1",
-      description: "do it before noon",
+      title: "todo 1",
+      description: "noon",
       done: true,
     },
     {
-      title: "complete DSA video1",
-      description: "do it before night",
+      title: "todo 2",
+      description: "night",
       done: false,
     },
   ]);
   function addTodo() {
+    let inputtext = document.getElementById("inputid").value;
     setTodo([
       ...todos,
       {
-        title: "new Todo",
+        title: inputtext,
         description: "yes i did it",
         done: true,
       },
@@ -28,6 +27,7 @@ function App() {
   }
   return (
     <div>
+      <input id="inputid" type="text" />
       <button onClick={addTodo}>Add Todo</button>
       {todos.map((todo) => {
         return <Todo title={todo.title} description={todo.description}></Todo>;

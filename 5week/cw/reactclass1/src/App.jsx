@@ -6,16 +6,13 @@ function App() {
   return (
     <div>
       <CustomButton count={count} setCount={setCount}></CustomButton>
-      <CustomButton count={count + 1} setCount={setCount}></CustomButton>
-      <CustomButton count={count * 10} setCount={setCount}></CustomButton>
-      <CustomButton count={count} setCount={setCount}></CustomButton>
     </div>
   );
 }
 
 function CustomButton(props) {
   function onclickHandler() {
-    props.setCount(props.count + 1);
+    props.setCount(props.count + 10);
   }
   return <button onClick={onclickHandler}>Counter {props.count}</button>;
 }
