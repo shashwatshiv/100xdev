@@ -61,7 +61,10 @@ button {
 button:hover {
   background-color: #424242;
 }
-
+.button-div {
+  display: flex;
+  justify-content: center;
+}
 .calculator {
   display: flex;
   justify-content: center;
@@ -71,7 +74,7 @@ button:hover {
 }
 input,
 #result {
-  border: solid 3px #387ed1;
+  border: solid 1px #387ed1;
   padding: 10px 30px;
   border-radius: 10px;
   font-size: 20px;

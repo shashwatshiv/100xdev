@@ -1,4 +1,4 @@
-// counter using setTimeout and recurrsion
+// counter using setTimeout and recursion
 
 function counter(sec) {
   if (sec > 0) {

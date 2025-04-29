@@ -42,9 +42,9 @@ class Todo {
 }
 let arr = new Todo();
 
-arr.add("lund lele");
-arr.add("gand dede");
-arr.update(1, "nhi dunga");
+arr.add("food");
+arr.add("grocery");
+arr.update(1, "clothes");
 console.log(arr.get(5));
 
 module.exports = Todo;
