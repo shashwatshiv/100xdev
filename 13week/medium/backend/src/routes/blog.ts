@@ -10,6 +10,7 @@ export const blogRouter = new Hono<{
     userId: string;
   };
 }>();
+// Middleware
 blogRouter.use("/*", async (c, next) => {
   const jwt = c.req.header("Authorization");
   if (!jwt) {
@@ -29,20 +30,23 @@ blogRouter.use("/*", async (c, next) => {
   c.set("userId", String(payload.id));
   await next();
 });
-
-blogRouter.post("/api/v1/blog", async (c) => {
+// Routes
+blogRouter.post("/", async (c) => {
   const prisma = getPrisma(c.env.DATABASE_URL);
   const body = await c.req.json();
+  const authorId = Number(c.get("userId"));
   try {
     const post = await prisma.post.create({
       data: {
         title: body.title,
         content: body.content,
-        authorId: Number(c.get("userId")),
+        authorId: authorId,
       },
     });
     return c.json({
       message: "Blog posted",
+      Userid: authorId,
+      postId: post.id,
     });
   } catch (error) {
     c.status(403);
@@ -51,7 +55,7 @@ blogRouter.post("/api/v1/blog", async (c) => {
     });
   }
 });
-blogRouter.put("/api/v1/blog", async (c) => {
+blogRouter.put("/", async (c) => {
   const prisma = getPrisma(c.env.DATABASE_URL);
   const body = await c.req.json();
   try {
@@ -67,9 +71,29 @@ blogRouter.put("/api/v1/blog", async (c) => {
     });
   }
 });
-blogRouter.get("/api/v1/blog/:id", (c) => {});
-blogRouter.get("api/v1/blog/bulk", async (c) => {
+blogRouter.get("/bulk", async (c) => {
   const prisma = getPrisma(c.env.DATABASE_URL);
   const blog = await prisma.post.findMany();
-  return c.json(blog);
+  return c.json({ blog });
+});
+
+blogRouter.get("/:id", async (c) => {
+  const postId = Number(c.req.param("id"));
+  const prisma = getPrisma(c.env.DATABASE_URL);
+  try {
+    const post = await prisma.post.findUnique({
+      where: {
+        id: postId,
+      },
+    });
+    return c.json({
+      post,
+      id: postId,
+    });
+  } catch (error) {
+    c.status(404);
+    return c.json({
+      error: "Post not found",
+    });
+  }
 });

@@ -12,7 +12,7 @@ const app = new Hono<{
   };
 }>();
 app.route("/api/v1/user", userRouter);
-app.route("/api/v1/blog/", blogRouter);
+app.route("/api/v1/blog", blogRouter);
 // middleware
 // get route
 app.get("/", (c) => {
