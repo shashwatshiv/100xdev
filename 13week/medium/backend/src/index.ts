@@ -10,7 +10,7 @@ const app = new Hono<{
     userId: string;
   };
 }>();
-
+// middleware
 app.use("/api/v1/blog/*", async (c, next) => {
   const jwt = c.req.header("Authorization");
   if (!jwt) {
@@ -27,28 +27,36 @@ app.use("/api/v1/blog/*", async (c, next) => {
       error: "Unauthorized Access",
     });
   }
-  c.set("userId", payload.id);
+  c.set("userId", String(payload.id));
   await next();
 });
+// get route
 app.get("/", (c) => {
   return c.text("Hello Hono!");
 });
-
+// signup route
 app.post("/api/v1/user/signup", async (c) => {
   const prisma = getPrisma(c.env.DATABASE_URL);
 
   const body = await c.req.json();
-  const user = await prisma.user.create({
-    data: {
-      name: body.name,
-      email: body.email,
-      password: body.password,
-    },
-  });
-  const token = await sign({ id: user.id }, c.env.JWT_SECRET);
-  return c.json({
-    jwt: token,
-  });
+  try {
+    const user = await prisma.user.create({
+      data: {
+        name: body.name,
+        email: body.email,
+        password: body.password,
+      },
+    });
+    const token = await sign({ id: user.id }, c.env.JWT_SECRET);
+    return c.json({
+      jwt: token,
+    });
+  } catch (error) {
+    c.status(411);
+    return c.json({
+      error: "Invalid request/ user already exists",
+    });
+  }
 });
 
 app.post("/api/v1/user/signin", async (c) => {
