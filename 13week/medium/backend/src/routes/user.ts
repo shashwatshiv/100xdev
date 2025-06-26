@@ -42,7 +42,7 @@ userRouter.post("/signin", async (c) => {
     if (!user) {
       c.status(403);
       return c.json({
-        error: "user not found",
+        error: "user not found" ,
       });
     }
     const token = await sign({ id: user.id }, c.env.JWT_SECRET);
