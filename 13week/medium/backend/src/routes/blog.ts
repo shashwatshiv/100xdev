@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 import { getPrisma } from "../prismaFunction";
 import { sign, verify } from "hono/jwt";
-import {} from "@shashwatshiv/medium-common";
+import { createBlogInput, updateBlogInput } from "@shashwatshiv/medium-common";
 export const blogRouter = new Hono<{
   Bindings: {
     DATABASE_URL: string;
@@ -32,10 +32,19 @@ blogRouter.use("/*", async (c, next) => {
   await next();
 });
 // Routes
+
+//create blog
 blogRouter.post("/", async (c) => {
   const prisma = getPrisma(c.env.DATABASE_URL);
   const body = await c.req.json();
   const authorId = Number(c.get("userId"));
+  const { success } = createBlogInput.safeParse(body);
+  if (!success) {
+    c.status(400);
+    return c.json({
+      error: "Invalid Input ",
+    });
+  }
   try {
     const post = await prisma.post.create({
       data: {
@@ -56,9 +65,18 @@ blogRouter.post("/", async (c) => {
     });
   }
 });
+
+//update blog
 blogRouter.put("/", async (c) => {
   const prisma = getPrisma(c.env.DATABASE_URL);
   const body = await c.req.json();
+  const { success } = updateBlogInput.safeParse(body);
+  if (!success) {
+    c.status(400);
+    return c.json({
+      error: "Invalid Input ",
+    });
+  }
   try {
     const put = await prisma.post.update({
       where: { id: body.id },

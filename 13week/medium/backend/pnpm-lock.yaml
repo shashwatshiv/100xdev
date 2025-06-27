@@ -15,8 +15,8 @@ importers:
         specifier: ^2.0.1
         version: 2.0.1(@prisma/client@6.10.1(prisma@6.10.1))
       '@shashwatshiv/medium-common':
-        specifier: ^1.0.0
-        version: 1.0.0
+        specifier: ^1.0.1
+        version: 1.0.1
       hono:
         specifier: ^4.8.3
         version: 4.8.3
@@ -385,8 +385,8 @@ packages:
   '@prisma/get-platform@6.10.1':
     resolution: {integrity: sha512-4CY5ndKylcsce9Mv+VWp5obbR2/86SHOLVV053pwIkhVtT9C9A83yqiqI/5kJM9T1v1u1qco/bYjDKycmei9HA==}
 
-  '@shashwatshiv/medium-common@1.0.0':
-    resolution: {integrity: sha512-8NIsUUKYgX+8Gy28S4aQUv1H9ZVRyqvE7h2pc+02WtqOxHJ8KW3tjPyzqJE8AeA19L/H5z+7KqWnYZT3qG75Kw==}
+  '@shashwatshiv/medium-common@1.0.1':
+    resolution: {integrity: sha512-7NN3GoJsCRSSntdqA1ndx5d1Dgpd+sh5FpwFTdD9hgVEFPh6jLINOH5ZtkCFhAEAczQeFWgsuJ1bJ+jMTs7qXg==}
 
   acorn-walk@8.3.2:
     resolution: {integrity: sha512-cjkyv4OtNCIeqhHrfS81QWXoCBPExR/J62oyEqepVw8WaQeSqpW2uhuLPh1m9eWhDuOo/jUXVTlifvesOWp/4A==}
@@ -803,7 +803,7 @@ snapshots:
     dependencies:
       '@prisma/debug': 6.10.1
 
-  '@shashwatshiv/medium-common@1.0.0':
+  '@shashwatshiv/medium-common@1.0.1':
     dependencies:
       zod: 3.25.67
 
