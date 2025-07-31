@@ -20,6 +20,9 @@ importers:
 
   apps/backend:
     dependencies:
+      '@repo/common':
+        specifier: workspace:*
+        version: link:../../packages/common
       '@types/express':
         specifier: ^5.0.3
         version: 5.0.3
@@ -122,6 +125,15 @@ importers:
       typescript:
         specifier: 5.8.2
         version: 5.8.2
+
+  packages/common:
+    devDependencies:
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      typescript:
+        specifier: ^5.8.3
+        version: 5.8.3
 
   packages/eslint-config:
     devDependencies:

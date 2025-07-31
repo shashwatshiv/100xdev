@@ -3,7 +3,7 @@
 
   "compilerOptions": {
     "rootDir": "./src",
-    "ourDir": "./dist"
+    "outDir": "./dist"
   },
   "exclude": ["node_modules", "dist"],
   "include": ["."]
