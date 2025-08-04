@@ -2,7 +2,6 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 const Appbar = () => {
   const session = useSession();
-  console.log(session);
   return (
     <div className="flex p-4">
       Appbar
@@ -23,6 +22,7 @@ const Appbar = () => {
         >
           logout
         </button>
+        {JSON.stringify(session.data?.user)}
       </div>
     </div>
   );
